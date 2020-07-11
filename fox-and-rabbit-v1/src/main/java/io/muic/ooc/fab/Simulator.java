@@ -15,10 +15,6 @@ public class Simulator {
     private static final int DEFAULT_WIDTH = 120;
     // The default depth of the grid.
     private static final int DEFAULT_DEPTH = 80;
-    // The probability that a fox will be created in any given grid position.
-    private static final double FOX_CREATION_PROBABILITY = 0.02;
-    // The probability that a rabbit will be created in any given position.
-    private static final double RABBIT_CREATION_PROBABILITY = 0.08;
 
     // Lists of animals in the field.
     private List<Animal> animals;
@@ -28,8 +24,6 @@ public class Simulator {
     private int step;
     // A graphical view of the simulation.
     private SimulatorView view;
-    // Random generator
-    private static final Random RANDOM = new Random();
 
     /**
      * Construct a simulation field with default size.
@@ -112,34 +106,11 @@ public class Simulator {
      */
     public void reset() {
         step = 0;
-        rabbits.clear();
-        foxes.clear();
-        populate();
+        animals.clear();
+        new FieldPopulator().populate(field,animals);
 
         // Show the starting state in the view.
         view.showStatus(step, field);
-    }
-
-    /**
-     * Randomly populate the field with foxes and rabbits.
-     */
-    private void populate() {
-        
-        field.clear();
-        for (int row = 0; row < field.getDepth(); row++) {
-            for (int col = 0; col < field.getWidth(); col++) {
-                if (RANDOM.nextDouble() <= FOX_CREATION_PROBABILITY) {
-                    Location location = new Location(row, col);
-                    Animal animal = AnimalFactory.createAnimal(AnimalType.FOX,field,location);
-                    foxes.add(animal);
-                } else if (RANDOM.nextDouble() <= RABBIT_CREATION_PROBABILITY) {
-                    Location location = new Location(row, col);
-                    Animal animal = AnimalFactory.createAnimal(AnimalType.RABBIT,field,location);
-                    rabbits.add(animal);
-                }
-                // else leave the location empty.
-            }
-        }
     }
 
     /**
