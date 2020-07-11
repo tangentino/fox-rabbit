@@ -1,10 +1,9 @@
 package io.muic.ooc.fab;
 
-import java.util.List;
 import java.util.Iterator;
-import java.util.Random;
+import java.util.List;
 
-public class Fox extends Animal {
+public class Tiger extends Animal {
     // Characteristics shared by all foxes (class variables).
 
     // The food value of a single rabbit. In effect, this is the
@@ -80,12 +79,12 @@ public class Fox extends Animal {
 
     @Override
     protected int getMaxAge() {
-        return 150;
+        return 200;
     }
 
     @Override
     protected double getBreedingProbability() {
-        return 0.08;
+        return 0.1;
     }
 
     @Override
@@ -95,6 +94,6 @@ public class Fox extends Animal {
 
     @Override
     protected int getBreedingAge() {
-        return 15;
+        return 30;
     }
 }

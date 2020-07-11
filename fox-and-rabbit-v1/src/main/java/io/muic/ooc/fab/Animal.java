@@ -13,7 +13,7 @@ public abstract class Animal {
     private int age = 0;
 
 
-    public Animal(boolean randomAge,Field field,Location location) {
+    public void initialize(boolean randomAge,Field field,Location location) {
         this.field = field;
         setLocation(location);
         if (randomAge) {
@@ -35,8 +35,6 @@ public abstract class Animal {
             }
         }
     }
-
-    protected abstract Animal breedOne(boolean randomAge, Field field, Location location);
 
     private void giveBirth(List<Animal> newAnimals) {
         // New rabbits are born into adjacent locations.
@@ -98,6 +96,10 @@ public abstract class Animal {
             births = RANDOM.nextInt( getMaxLitterSize()) + 1;
         }
         return births;
+    }
+
+    private Animal breedOne(boolean randomAge, Field field, Location location) {
+        return AnimalFactory.createAnimal(this.getClass(),field,location);
     }
 
     private boolean canBreed() {
