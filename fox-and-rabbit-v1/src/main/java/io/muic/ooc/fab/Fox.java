@@ -5,11 +5,7 @@ import java.util.Iterator;
 import java.util.Random;
 
 public class Fox extends Animal {
-    // Characteristics shared by all foxes (class variables).
 
-    // The food value of a single rabbit. In effect, this is the
-    // number of steps a fox can go before it has to eat again.
-    private static final int RABBIT_FOOD_VALUE = 9;
     // The fox's food level, which is increased by eating rabbits.
     private int foodLevel;
 
@@ -24,7 +20,7 @@ public class Fox extends Animal {
     @Override
     public void initialize(boolean randomAge, Field field, Location location) {
         super.initialize(randomAge,field,location);
-        foodLevel = RANDOM.nextInt(RABBIT_FOOD_VALUE);
+        foodLevel = RANDOM.nextInt(AnimalType.RABBIT.getFoodValue());
     }
 
     @Override
@@ -70,7 +66,7 @@ public class Fox extends Animal {
                 Rabbit rabbit = (Rabbit) animal;
                 if (rabbit.isAlive()) {
                     rabbit.setDead();
-                    foodLevel = RABBIT_FOOD_VALUE;
+                    foodLevel = AnimalType.RABBIT.getFoodValue();
                     return where;
                 }
             }
@@ -97,4 +93,9 @@ public class Fox extends Animal {
     protected int getBreedingAge() {
         return 15;
     }
+
+    @Override
+    protected AnimalType[] getFoodList() {
+    }
+
 }

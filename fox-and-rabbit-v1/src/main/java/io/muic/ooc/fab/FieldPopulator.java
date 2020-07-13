@@ -16,9 +16,7 @@ public class FieldPopulator {
             put(animalTypes[i],animalTypes[i].getProbability());
         }
     }};
-    /**
-     * Randomly populate the field with foxes and rabbits.
-     */
+
     public void populate(Field field, List<Animal> animals) {
 
         field.clear();

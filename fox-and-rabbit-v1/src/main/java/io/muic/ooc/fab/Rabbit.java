@@ -6,10 +6,9 @@ import java.util.List;
 import java.util.Random;
 
 public class Rabbit extends Animal {
-    // Characteristics shared by all rabbits (class variables).
 
-    // The maximum number of births.
-    private static final int MAX_LITTER_SIZE = 4;
+    @Override
+    protected AnimalType[] getFoodList() { return null; }
 
     @Override
     protected Location relocate() {
@@ -35,4 +34,5 @@ public class Rabbit extends Animal {
     protected int getBreedingAge() {
         return 5;
     }
-}
+
+    }
