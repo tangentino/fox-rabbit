@@ -1,34 +1,33 @@
 package io.muic.ooc.fab;
 
-import java.util.List;
 import java.util.Iterator;
-import java.util.Random;
+import java.util.List;
 
-public class Fox extends Carnivore {
+public class Tiger extends Carnivore {
 
     @Override
     protected int getMaxAge() {
-        return 150;
+        return 200;
     }
 
     @Override
     protected double getBreedingProbability() {
-        return AnimalType.FOX.getProbability();
+        return AnimalType.TIGER.getProbability();
     }
 
     @Override
     protected int getMaxLitterSize() {
-        return 4;
+        return 2;
     }
 
     @Override
     protected int getBreedingAge() {
-        return 15;
+        return 30;
     }
 
     @Override
     protected AnimalType[] getFoodList() {
-        return new AnimalType[]{AnimalType.RABBIT};
+        return new AnimalType[]{AnimalType.RABBIT,AnimalType.FOX};
     }
 
 }
