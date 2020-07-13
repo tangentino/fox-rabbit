@@ -3,75 +3,7 @@ package io.muic.ooc.fab;
 import java.util.Iterator;
 import java.util.List;
 
-public class Tiger extends Animal {
-
-    // The fox's food level, which is increased by eating rabbits.
-    private int foodLevel;
-
-    /**
-     * Create a fox. A fox can be created as a new born (age zero and not
-     * hungry) or with a random age and food level.
-     *
-     * @param randomAge If true, the fox will have random age and hunger level.
-     * @param field The field currently occupied.
-     * @param location The location within the field.
-     */
-    @Override
-    public void initialize(boolean randomAge, Field field, Location location) {
-        super.initialize(randomAge,field,location);
-        foodLevel = RANDOM.nextInt(AnimalType.RABBIT.getFoodValue());
-    }
-
-    @Override
-    protected Location relocate() {
-        Location newLocation = findFood();
-        if (newLocation == null) {
-            // No food found - try to move to a free location.
-            newLocation = field.freeAdjacentLocation(getLocation());
-        }
-        return newLocation;
-    }
-
-
-    @Override
-    public void act(List<Animal> newAnimal) {
-        incrementHunger();
-        super.act(newAnimal);
-    }
-
-    /**
-     * Make this fox more hungry. This could result in the fox's death.
-     */
-    private void incrementHunger() {
-        foodLevel--;
-        if (foodLevel <= 0) {
-            setDead();
-        }
-    }
-
-    /**
-     * Look for rabbits adjacent to the current location. Only the first live
-     * rabbit is eaten.
-     *
-     * @return Where food was found, or null if it wasn't.
-     */
-    private Location findFood() {
-        List<Location> adjacent = field.adjacentLocations(getLocation());
-        Iterator<Location> it = adjacent.iterator();
-        while (it.hasNext()) {
-            Location where = it.next();
-            Object animal = field.getObjectAt(where);
-            if (animal instanceof Rabbit) {
-                Rabbit rabbit = (Rabbit) animal;
-                if (rabbit.isAlive()) {
-                    rabbit.setDead();
-                    foodLevel = AnimalType.RABBIT.getFoodValue();
-                    return where;
-                }
-            }
-        }
-        return null;
-    }
+public class Tiger extends Carnivore {
 
     @Override
     protected int getMaxAge() {
@@ -80,7 +12,7 @@ public class Tiger extends Animal {
 
     @Override
     protected double getBreedingProbability() {
-        return 0.1;
+        return AnimalType.TIGER.getProbability();
     }
 
     @Override
@@ -91,6 +23,11 @@ public class Tiger extends Animal {
     @Override
     protected int getBreedingAge() {
         return 30;
+    }
+
+    @Override
+    protected AnimalType[] getFoodList() {
+        return new AnimalType[]{AnimalType.RABBIT,AnimalType.FOX};
     }
 
 }

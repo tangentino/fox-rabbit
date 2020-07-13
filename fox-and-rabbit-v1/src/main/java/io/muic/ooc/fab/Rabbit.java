@@ -5,15 +5,7 @@ import sun.security.action.GetLongAction;
 import java.util.List;
 import java.util.Random;
 
-public class Rabbit extends Animal {
-
-    @Override
-    protected AnimalType[] getFoodList() { return null; }
-
-    @Override
-    protected Location relocate() {
-        return field.freeAdjacentLocation(getLocation());
-    }
+public class Rabbit extends Herbivore {
 
     @Override
     protected int getMaxAge() {
@@ -22,7 +14,7 @@ public class Rabbit extends Animal {
 
     @Override
     protected double getBreedingProbability() {
-        return 0.12;
+        return AnimalType.RABBIT.getProbability();
     }
 
     @Override

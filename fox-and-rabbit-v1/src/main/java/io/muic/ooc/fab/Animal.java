@@ -90,8 +90,6 @@ public abstract class Animal {
 
     protected abstract int getBreedingAge();
 
-    protected abstract AnimalType[] getFoodList();
-
     protected int breed() {
         int births = 0;
         if (canBreed() && RANDOM.nextDouble() <=  getBreedingProbability()) {

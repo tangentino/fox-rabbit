@@ -3,7 +3,10 @@ package io.muic.ooc.fab;
 import java.awt.*;
 
 public enum AnimalType {
-    RABBIT(0.08,Rabbit.class,Color.ORANGE,9), FOX(0.02,Fox.class,Color.BLUE,10), TIGER(0.02,Tiger.class,Color.RED,11);
+    RABBIT(0.2,Rabbit.class,Color.ORANGE,9),
+    FOX(0.1,Fox.class,Color.BLUE,10),
+    TIGER(0.03,Tiger.class,Color.RED,11),
+    HUNTER(0.001,Hunter.class,Color.GREEN,0);
 
     private double breedingProbability;
 
